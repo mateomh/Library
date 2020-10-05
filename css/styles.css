@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.book-card {
+  height: fit-content;
+  width: 30%;
+  border-radius: 10px;
+  background-color: slategrey;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 3vh;
+}
+
+.delete-button {
+  border: none;
+  background-color: coral;
+  font-weight: 900;
+  height: 2vh;
+  width: 20%;
+}
+
+.read-button {
+  border: none;
+  background-color: cornflowerblue;
+  font-weight: 900;
+  height: 2vh;
+  width: 20%;
+}
