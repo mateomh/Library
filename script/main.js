@@ -26,7 +26,7 @@ function clearCards() {
 function deleteCard(event) {
   const index = event.target.value;
   myLibrary.splice(index, 1);
-  // viewBooks();
+  viewBooks();
 }
 
 function read(event) {
