@@ -9,7 +9,6 @@ const info = document.getElementsByClassName('book-input');
 const cards = document.getElementById('cards');
 const form = document.getElementsByTagName('form')[0];
 
-
 let book_counter = 0;
 let book_form_on = 0;
 
@@ -49,6 +48,8 @@ function viewBooks() { //display a card on the brawser
   }
 }
 
+
+
 function renderCard(book){
   const div_card = document.createElement('div');
   div_card.setAttribute('class','book-card');
@@ -65,8 +66,10 @@ function renderCard(book){
   
   b1 = document.createElement('button');
   b1.textContent = 'Delete';
+  b1.addEventListener('click', deleteCard)
   b1.setAttribute('class','delete button');
   b2 = document.createElement('button');
+  b2.addEventListener('click',read)
   b2.textContent = 'Read';
   b2.setAttribute('class','read button');
   div_card.appendChild(h2);
@@ -74,6 +77,15 @@ function renderCard(book){
   div_card.appendChild(p);
   div_card.appendChild(b1);
   div_card.appendChild(b2);
+}
+
+function deleteCard() {
+  const cardContainer = document.getElementById('cards');
+
+}
+
+function read() {
+
 }
 
 addBookButton.addEventListener('click',addBook)
