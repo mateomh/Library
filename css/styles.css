@@ -47,6 +47,14 @@ body {
   padding: 3vh;
 }
 
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
 .button {
   border: none;
   font-weight: 900;
