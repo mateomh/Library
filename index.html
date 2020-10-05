@@ -7,13 +7,27 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>Our Library</h1>
+
+  <button class="add button">Add Book</button>
+
+  <form class="form-hide book-form" action="">
+    <label class="book-label" for="title">Book's Title</label> <br>
+    <input class="book-input" type="text" name="title" placeholder="Title">
+    <br>
+    <label class="book-label" for="author">Book's Author</label> <br>
+    <input class="book-input" type="text" name="author" placeholder="Author">
+    <br>
+    <label class="book-label" for="pages">Total number of pages</label> <br>
+    <input class="book-input" type="number" name="pages" placeholder="# Pages">
+  </form>
 
   <div class="book-card">
     <h2>Book Title</h2>
     <h3>Author</h3>
     <p>Total pages</p>
-    <button class="delete-button">Delete</button>
-    <button class="read-button">Read</button>
+    <button class="delete button">Delete</button>
+    <button class="read button">Read</button>
   </div>
 
   <script src="./script/main.js"></script>
