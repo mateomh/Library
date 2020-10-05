@@ -6,8 +6,8 @@ let myLibrary = [];
 
 const addBookButton = document.getElementById('add');
 const info = document.getElementsByClassName('book-input');
-const cards = document.getElementById('cards');
 const form = document.getElementsByTagName('form')[0];
+const cards = document.getElementById('cards');
 
 let book_counter = 0;
 let book_form_on = 0;
@@ -42,16 +42,22 @@ function addBook() {
 }
 
 function viewBooks() { //display a card on the brawser
-  for(let book of myLibrary)
+  clearCards();
+  for(let i=0; i < myLibrary.length; i++)
   {
-   renderCard(book); 
+   renderCard(myLibrary[i],i); 
   }
 }
 
+function clearCards(){
+  while (cards.firstChild) {
+    cards.removeChild(cards.firstChild);
+  }
+}
 
-
-function renderCard(book){
+function renderCard(book,index){
   const div_card = document.createElement('div');
+
   div_card.setAttribute('class','book-card');
   div_card.setAttribute('id',book.id);
   cards.appendChild(div_card);
@@ -66,12 +72,14 @@ function renderCard(book){
   
   b1 = document.createElement('button');
   b1.textContent = 'Delete';
-  b1.addEventListener('click', deleteCard)
+  b1.setAttribute('value',index);
+  b1.addEventListener('click', deleteCard);
   b1.setAttribute('class','delete button');
   b2 = document.createElement('button');
   b2.addEventListener('click',read)
   b2.textContent = 'Read';
   b2.setAttribute('class','read button');
+  b2.setAttribute('value',index);
   div_card.appendChild(h2);
   div_card.appendChild(h3);
   div_card.appendChild(p);
@@ -79,13 +87,16 @@ function renderCard(book){
   div_card.appendChild(b2);
 }
 
-function deleteCard() {
-  const cardContainer = document.getElementById('cards');
-
+function deleteCard(event) {
+  index = event.target.value;
+  myLibrary.splice(index,1);
+  viewBooks();
 }
 
-function read() {
-
+function read(event) {
+  index = event.target.value;
+  myLibrary[index].status = true;
+  event.target.setAttribute('class','form-hide');
 }
 
 addBookButton.addEventListener('click',addBook)
