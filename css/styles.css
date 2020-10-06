@@ -1,0 +1,78 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.form-hide {
+  display: none;
+}
+
+.book-form {
+  background-color: lightgrey;
+  width: 40%;
+  margin: 3vh auto;
+  border-radius: 10px;
+  padding: 3vh;
+}
+
+.book-label {
+  font-weight: 900;
+  font-size: 2.5vh;
+}
+
+.book-input {
+  border: none;
+  height: 3vh;
+  width: 50%;
+  margin: 2vh 0;
+  border-radius: 5px;
+}
+
+.book-card {
+  height: fit-content;
+  width: 30%;
+  border-radius: 10px;
+  background-color: slategrey;
+  margin: 5vh auto;
+  text-align: center;
+  line-height: 3vh;
+  padding: 3vh;
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.button {
+  border: none;
+  font-weight: 900;
+  height: 2vh;
+  width: 20%;
+  margin: 3vh 2vh;
+}
+
+.delete {
+  background-color: coral;
+}
+
+.read {
+  background-color: cornflowerblue;
+}
+
+.add {
+  background-color: lightgreen;
+  height: 6vh;
+  border: 2px solid limegreen;
+}
