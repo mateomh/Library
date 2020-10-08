@@ -1,42 +1,51 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable no-use-before-define, max-classes-per-file */
 
-// Factory function refactoring for the library
-const libraryFactory = () => {
-  const myLibrary = [];
-  const cards = document.getElementById('cards');
+class Library {
+  constructor() {
+    this.myLibrary = [];
+    this.cards = document.getElementById('cards');
+  }
 
-  const showLibrary = () => myLibrary;
+  showLibrary() {
+    return this.myLibrary;
+  }
 
-  const deleteBook = (event) => {
-    const index = event.target.value;
-    myLibrary.splice(index, 1);
-    viewBooks();
-  };
-
-  const readBook = (event) => {
-    const index = event.target.value;
-    myLibrary[index].status = true;
-    event.target.setAttribute('class', 'form-hide');
-  };
-
-  const addBookToLibrary = (book) => {
-    myLibrary.push(book);
-    viewBooks();
-  };
-
-  // Private methods
-  const clearCards = () => {
-    while (cards.firstChild) {
-      cards.removeChild(cards.firstChild);
+  viewBooks() {
+    this.clearCards();
+    for (let i = 0; i < this.myLibrary.length; i += 1) {
+      this.renderCard(this.myLibrary[i], i);
     }
-  };
+  }
 
-  const renderCard = (book, index) => {
+  deleteBook(event) {
+    const index = event.target.value;
+    this.myLibrary.splice(index, 1);
+    this.viewBooks();
+  }
+
+  readBook(event) {
+    const index = event.target.value;
+    this.myLibrary[index].status = true;
+    event.target.setAttribute('class', 'form-hide');
+  }
+
+  addBookToLibrary(book) {
+    this.myLibrary.push(book);
+    this.viewBooks();
+  }
+
+  clearCards() {
+    while (this.cards.firstChild) {
+      this.cards.removeChild(this.cards.firstChild);
+    }
+  }
+
+  renderCard(book, index) {
     const divCard = document.createElement('div');
 
     divCard.setAttribute('class', 'book-card');
     divCard.setAttribute('id', book.id);
-    cards.appendChild(divCard);
+    this.cards.appendChild(divCard);
     const h2 = document.createElement('h2');
     h2.textContent = book.title;
 
@@ -49,51 +58,44 @@ const libraryFactory = () => {
     const b1 = document.createElement('button');
     b1.textContent = 'Delete';
     b1.setAttribute('value', index);
-    b1.addEventListener('click', deleteCard);
+    b1.addEventListener('click', this.deleteCard.bind(this));
     b1.setAttribute('class', 'delete button');
     const b2 = document.createElement('button');
-    b2.addEventListener('click', read);
+    b2.addEventListener('click', this.read.bind(this));
     b2.textContent = 'Read';
     b2.setAttribute('class', 'read button');
     b2.setAttribute('value', index);
     divCard.append(h2, h3, p, b1, b2);
-  };
+  }
 
-  const viewBooks = () => {
-    clearCards();
-    for (let i = 0; i < myLibrary.length; i += 1) {
-      renderCard(myLibrary[i], i);
-    }
-  };
-
-  const deleteCard = (event) => {
+  deleteCard(event) {
     const index = event.target.value;
-    myLibrary.splice(index, 1);
-    viewBooks();
-  };
+    this.myLibrary.splice(index, 1);
+    this.viewBooks();
+  }
 
-  const read = (event) => {
+  read(event) {
     const index = event.target.value;
-    myLibrary[index].status = true;
+    this.myLibrary[index].status = true;
     event.target.setAttribute('class', 'form-hide');
-  };
+  }
+}
 
-  return {
-    deleteBook, readBook, addBookToLibrary, showLibrary,
-  };
-};
-
-// Factory function refactoring for the book
-const bookFactory = (title, author, pages, id) => ({
-  title, author, pages, id,
-});
+class Book {
+  constructor(title, author, pages, id) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.id = id;
+  }
+}
 
 function addBook() {
   if (bookFormOn === 0) {
     form.classList.toggle('form-hide');
     bookFormOn = 1;
   } else {
-    const book = bookFactory(info[0].value, info[1].value, info[2].value, bookCounter);
+    const book = new Book(info[0].value, info[1].value, info[2].value, bookCounter);
     bookCounter += 1;
     library.addBookToLibrary(book);
     form.classList.toggle('form-hide');
@@ -101,7 +103,7 @@ function addBook() {
   }
 }
 
-const library = libraryFactory();
+const library = new Library();
 
 const addBookButton = document.getElementById('add');
 const form = document.getElementsByTagName('form')[0];
