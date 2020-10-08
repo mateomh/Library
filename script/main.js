@@ -166,16 +166,21 @@ class Library {
 }
 
 // Factory function refactoring for the book
-const bookFactory = (title, author, pages, id) => ({
-  title, author, pages, id,
-});
+class Book {
+  constructor(title, author, pages, id) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.id = id;
+  }
+}
 
 function addBook() {
   if (bookFormOn === 0) {
     form.classList.toggle('form-hide');
     bookFormOn = 1;
   } else {
-    const book = bookFactory(info[0].value, info[1].value, info[2].value, bookCounter);
+    const book = new Book(info[0].value, info[1].value, info[2].value, bookCounter);
     bookCounter += 1;
     library.addBookToLibrary(book);
     form.classList.toggle('form-hide');
