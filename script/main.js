@@ -60,11 +60,7 @@ function renderCard(book, index) {
   b2.textContent = 'Read';
   b2.setAttribute('class', 'read button');
   b2.setAttribute('value', index);
-  divCard.appendChild(h2);
-  divCard.appendChild(h3);
-  divCard.appendChild(p);
-  divCard.appendChild(b1);
-  divCard.appendChild(b2);
+  divCard.append(h2, h3, p, b1, b2);
 }
 
 function viewBooks() {
