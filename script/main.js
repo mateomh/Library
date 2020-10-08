@@ -2,12 +2,10 @@
 
 // Factory function refactoring for the library
 const libraryFactory = () => {
-  const myLibrary =[];
+  const myLibrary = [];
   const cards = document.getElementById('cards');
 
-  const showLibrary = () => {
-    return myLibrary;
-  };
+  const showLibrary = () => myLibrary;
 
   const deleteBook = (event) => {
     const index = event.target.value;
@@ -25,7 +23,7 @@ const libraryFactory = () => {
     myLibrary.push(book);
     viewBooks();
   };
-  
+
   // Private methods
   const clearCards = () => {
     while (cards.firstChild) {
@@ -35,19 +33,19 @@ const libraryFactory = () => {
 
   const renderCard = (book, index) => {
     const divCard = document.createElement('div');
-  
+
     divCard.setAttribute('class', 'book-card');
     divCard.setAttribute('id', book.id);
     cards.appendChild(divCard);
     const h2 = document.createElement('h2');
     h2.textContent = book.title;
-  
+
     const h3 = document.createElement('h3');
     h3.textContent = `Author:${book.author}`;
-  
+
     const p = document.createElement('p');
     p.textContent = `Total pages:${book.pages}`;
-  
+
     const b1 = document.createElement('button');
     b1.textContent = 'Delete';
     b1.setAttribute('value', index);
@@ -80,13 +78,15 @@ const libraryFactory = () => {
     event.target.setAttribute('class', 'form-hide');
   };
 
-  return {deleteBook, readBook, addBookToLibrary, showLibrary};
+  return {
+    deleteBook, readBook, addBookToLibrary, showLibrary,
+  };
 };
 
 // Factory function refactoring for the book
-const bookFactory = (title, author, pages, id) => {
-  return {title, author, pages, id};
-};
+const bookFactory = (title, author, pages, id) => ({
+  title, author, pages, id,
+});
 
 function addBook() {
   if (bookFormOn === 0) {
